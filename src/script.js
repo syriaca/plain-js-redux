@@ -53,6 +53,13 @@ function downVoteVideo() {
     }
 }
 
+function updateViewCount(view = 1) {
+    return {
+        type: "UPDATE_VIEW_COUNT",
+        payload: view
+    }
+}
+
 function reducer(state = initialState, action) {
     switch(action.type) {
         case "CHANGE_COUNT":
@@ -100,8 +107,16 @@ function reducer(state = initialState, action) {
                     ...state.youtubeVideo,
                     votes: {
                         ...state.youtubeVideo.votes,
-                        down: state.youtubeVideo.votes.down - 1
+                        down: state.youtubeVideo.votes.down + 1
                     }
+                }
+            }
+        case "UPDATE_VIEW_COUNT":
+            return {
+                ...state,
+                youtubeVideo: {
+                    ...state.youtubeVideo,
+                    viewCount: state.youtubeVideo.viewCount + action.payload
                 }
             }
         default:
@@ -115,5 +130,9 @@ store.subscribe(() => {
     console.log(store.getState())
 })
 
-store.dispatch(setYouTubeTitle("Learn Redux"))
-store.dispatch(upvoteVideo())
+// store.dispatch(setYouTubeTitle("Learn Redux"))
+// store.dispatch(upvoteVideo())
+// store.dispatch(upvoteVideo())
+// store.dispatch(upvoteVideo())
+// store.dispatch(downVoteVideo())
+// store.dispatch(updateViewCount(150000000))
