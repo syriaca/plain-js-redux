@@ -1,10 +1,4 @@
-const redux = require("redux");
-const store = redux.createStore(reducer);
-store.subscribe(() => { console.log(store.getState()) });
+import store from "./redux";
+import { setYouTubeTitle } from "./redux/youTubeVideo";
 
-// store.dispatch(setYouTubeTitle("Learn Redux"))
-// store.dispatch(upvoteVideo())
-// store.dispatch(upvoteVideo())
-// store.dispatch(upvoteVideo())
-// store.dispatch(downVoteVideo())
-// store.dispatch(updateViewCount(150000000))
+store.dispatch(setYouTubeTitle("New marilyn manson shocking video clip out !"));
