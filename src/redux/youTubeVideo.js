@@ -43,17 +43,23 @@ export default function youTubeVideoReducer(youTubeVideo = initialState, action)
         case "UPVOTE_VIDEO":
             return {
                 ...youTubeVideo,
-                viewCount: youTubeVideo.votes.up + 1
+                votes: {
+                    ...youTubeVideo.votes,
+                    up: youTubeVideo.votes.up + 1
+                }
             }
         case "DOWNVOTE_VIDEO":
             return {
                 ...youTubeVideo,
-                viewCount: youTubeVideo.votes.down + 1
+                votes: {
+                    ...youTubeVideo.votes,
+                    down: youTubeVideo.votes.down - 1
+                }
             }
         case "UPDATE_VIEW_COUNT":
             return {
                 ...youTubeVideo,
-                viewCount: viewCount + action.payload
+                viewCount: youTubeVideo.viewCount + action.payload
             }
         default:
             return youTubeVideo;
