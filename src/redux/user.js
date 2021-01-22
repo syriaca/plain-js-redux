@@ -5,23 +5,21 @@ export function setUserDetails(user) {
     }
 }
 
-const initialState = {
-    firstName: "",
-    lastName: "",
-    id: "",
-    email: ""
+export function removeUserDetails() {
+    return {
+        type: "REMOVE_USER_DETAILS"
+    }
 }
 
-export default function userReducer(user = initialState, action) {
+export default function userReducer(user = null, action) {
     switch (action.type) {
         case "SET_USER_DETAILS":
             return {
                 ...user,
-                firstName: action.payload.firstName ? action.payload.firstName : "anonymous firstName",
-                lastName: action.payload.lastName ? action.payload.lastName : "anonymous lastName",
-                id: action.payload.id ? action.payload.id : 0,
-                email: action.payload.email ? action.payload.email : "anonymous@email.com",
+                ...action.payload
             }
+        case "REMOVE_USER_DETAILS":
+            return null
         default:
             return user;
     }
